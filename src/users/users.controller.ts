@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 
 @Controller('api/v1')
-export class UserController {
+export class UsersController {
   @Post('add-user')
   addUser(): string {
     return 'adding user';
