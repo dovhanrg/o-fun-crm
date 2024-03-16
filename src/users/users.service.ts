@@ -13,8 +13,23 @@ export class UsersService {
     return await this.userRepository.findAll();
   }
 
+  async createUser(name: string, password: string, email: string) {
+    return await this.userRepository.create({
+      name,
+      password,
+      email,
+    });
+  }
+
+  async findUserByName(name: string): Promise<User | undefined> {
+    return await this.userRepository.findOne({
+      where: {
+        name,
+      },
+    });
+  }
+
   async findOne(id: string): Promise<User | undefined> {
-    console.log(await this.userRepository.findAll());
     return await this.userRepository.findOne({
       where: {
         id,
