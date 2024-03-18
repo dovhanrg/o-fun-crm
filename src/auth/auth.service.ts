@@ -13,11 +13,12 @@ export class AuthService {
     username: string,
     pass: string,
   ): Promise<{ access_token: string }> {
-    console.log(username, pass);
-
     const user = await this.usersService.findUserByName(username);
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
     if (user?.password !== pass) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Incorrect password');
     }
     const payload = { sub: user.id, username: user.name };
     return {

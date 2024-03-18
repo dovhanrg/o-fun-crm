@@ -1,0 +1,23 @@
+version: "3"
+
+
+services:
+  database:
+    container_name: o-funs-db
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+    volumes:
+      - funs:/var/lib/mysql
+    restart: always
+    networks:
+      funs-network:
+
+volumes:
+  funs:
+
+networks:
+  funs-network:

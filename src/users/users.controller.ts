@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDTO } from './users.dto';
+import { Public } from '../public/public.decorator';
 
 @Controller('api/v1')
 export class UsersController {
@@ -18,10 +19,10 @@ export class UsersController {
     private userService: UsersService,
   ) {}
 
+  @Public()
   @Post('add-user')
   async addUser(@Body() body: CreateUserDTO) {
     const { name, password, email } = body;
-    console.log(typeof name, typeof password, typeof email);
     if (!name) {
       throw new HttpException(
         'Validation failed. Name must be now empty string', // TODO: properly validate name

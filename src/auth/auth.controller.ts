@@ -3,10 +3,11 @@ import {
   Controller,
   Get,
   HttpCode,
+  HttpException,
   HttpStatus,
   Post,
-  UseGuards,
   Request,
+  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
@@ -19,8 +20,14 @@ export class AuthController {
   @Public()
   @HttpCode(HttpStatus.OK)
   @Post('login') // TODO:  use a DTO
-  signIn(@Body() signInDto: Record<string, any>) {
-    return this.authService.signIn(signInDto.username, signInDto.password);
+  signIn(@Body() signInBody: Record<string, any>) {
+    if (!signInBody.username || !signInBody.password) {
+      throw new HttpException(
+        'Validation failed. Enter valid Login and password',
+        HttpStatus.UNPROCESSABLE_ENTITY,
+      );
+    }
+    return this.authService.signIn(signInBody.username, signInBody.password);
   }
 
   @UseGuards(AuthGuard)
