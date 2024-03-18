@@ -1,3 +1,34 @@
+### API is available at [https://funs.dovhan.com.ua](https://funs.dovhan.com.ua) 
+
+### To run app locally first load up Database
+- Go to `docker`  directory
+- Run `run.sh` file
+- go to root directory and run `npm ci && npm run start`
+
+### Endpoints:
+```
+Login existing user
+POST /auth/login
+Content-Type: application
+fields: username:string, password:string
+``` 
+```
+Registering new user, adding to db
+POST /api/v1/add-user
+Content-Type: application
+fields: username:string, password:string, email:string
+``` 
+```
+Retrieving user info by user id
+GET /api/v1/get-user/:id
+Content-Type: application
+params: id:number
+``` 
+
+Used nodejs v20.10.0
+___
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
