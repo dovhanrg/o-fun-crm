@@ -9,19 +9,19 @@
 ```
 Login existing user
 POST /auth/login
-Content-Type: application
+Content-Type: application/json
 fields: username:string, password:string
 ``` 
 ```
 Registering new user, adding to db
 POST /api/v1/add-user
-Content-Type: application
+Content-Type: application/json
 fields: username:string, password:string, email:string
 ``` 
 ```
 Retrieving user info by user id
 GET /api/v1/get-user/:id
-Content-Type: application
+Content-Type: application/json
 params: id:number
 ``` 
 
